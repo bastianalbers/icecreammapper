@@ -1,0 +1,30 @@
+{
+  "shops": [
+    {
+      "name": "Eissalon Tanne B",
+      "address": "Eisenbahnstraße 48, 10997 Berlin",
+      "latitude": 52.50096,
+      "longitude": 13.43131,
+      "flavors": [
+        {
+          "name": "Mango",
+          "color": "#febb16",
+          "description": "Very fruity, you can taste the different Mangos that were used so each time it is a different taste."
+        }
+      ]
+    },
+    {
+      "name": "Fräulein Frost",
+      "address": "Friedelstraße 39, 12047 Berlin",
+      "latitude": 52.492074,
+      "longitude": 13.427737,
+      "flavors": [
+        {
+          "name": "GuZiMi",
+          "color": "#57fe16",
+          "description": "Gurke Zitrone Minze aka Cucumber Lemon Mint"
+        }
+      ]
+    }
+  ]
+}
