@@ -11,11 +11,20 @@
 
   <style type="text/css">
     html, body {
+      margin: 0;
+      padding: 0;
       color: #333333;
       background-color: #dddddd;
+      font-family: sans-serif;
+    }
+    h1 {
+      width: 100%;
+      text-align: center;
     }
     #map {
+      position: relative;
       height: 400px;
+      height: 50vh;
       width: 100%;
       background-color: #bbbbbb;
     }
@@ -55,7 +64,31 @@
 
 <script type="text/javascript">
 var map = L.map('map').setView([52.5014,13.4358], 13);
-var shops = [];
+var position,
+    shops = [];
+
+map.on('locationfound', function(e) {
+  console.log('fff');
+  position = e.latlng;
+  L.circleMarker(position, {radius: 5, color: '#aa0000'}).addTo(map);
+  shops.forEach(function(shop, index){
+    var ll = L.latLng(shop.latitude, shop.longitude);
+    var marker = L.marker(ll).addTo(map);
+    shop.distance = Math.round(ll.distanceTo(position));
+    var flavorlist = "<ul class='flavorlist'>";
+    for(var i = 0; i < shop.flavors.length; i++){
+      var flav = shop.flavors[i];
+      flavorlist += "<li>";
+      flavorlist += "<span class='colorspan' style='background-color:" + flav.color + ";'></span>";
+      flavorlist += flav.name;
+      flavorlist += "</li>";
+    }
+    flavorlist += "</ul>";
+    marker.bindPopup("<h2>" + shop.name + "</h2>" + shop.address + "<br>(" + shop.distance + "km)<br><br><b>Flavors:</b>"+ flavorlist +"");
+  });
+});
+map.locate();
+
 L.tileLayer('http://a.tiles.mapbox.com/v4/bastianalbers.m0kmaif8/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoiYmFzdGlhbmFsYmVycyIsImEiOiJDcXZVYTdzIn0.C6OWCoNwdNRQXQXC0H0nvA', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18
@@ -70,19 +103,6 @@ $(function(){
     },
     success: function( data ) {
       shops = data.shops;
-      data.shops.forEach(function(shop){
-        var marker = L.marker([shop.latitude,shop.longitude]).addTo(map);
-        var flavorlist = "<ul class='flavorlist'>";
-        for(var i = 0; i < shop.flavors.length; i++){
-          var flav = shop.flavors[i];
-          flavorlist += "<li>";
-          flavorlist += "<span class='colorspan' style='background-color:" + flav.color + ";'></span>";
-          flavorlist += flav.name;
-          flavorlist += "</li>";
-        }
-        flavorlist += "</ul>";
-        marker.bindPopup("<h2>" + shop.name + "</h2><br><b>Flavors:</b>"+ flavorlist +"");
-      });
     }
   });
 });

@@ -8,8 +8,7 @@
       "flavors": [
         {
           "name": "Mango",
-          "color": "#febb16",
-          "description": "Very fruity, you can taste the different Mangos that were used so each time it is a different taste."
+          "color": "#febb16"
         }
       ]
     },
@@ -20,9 +19,32 @@
       "longitude": 13.427737,
       "flavors": [
         {
-          "name": "GuZiMi",
-          "color": "#57fe16",
-          "description": "Gurke Zitrone Minze aka Cucumber Lemon Mint"
+          "name": "Buttermilk-Orange",
+          "color": "#bbad63",
+          "tags": [
+            "buttermilk", "orange"
+          ]
+        },
+        {
+          "name": "Pistacio",
+          "color": "#566222",
+          "tags": [
+            "pistacio"
+          ]
+        },
+        {
+          "name": "Curd-Morello",
+          "color": "#5a041f",
+          "tags": [
+            "curd", "morello", "cherry"
+          ]
+        },
+        {
+          "name": "Tiramisu",
+          "color": "#bb8e5c",
+          "tags": [
+            "tiramisu", "coffee", "cookie"
+          ]
         }
       ]
     }
